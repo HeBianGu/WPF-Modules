@@ -49,6 +49,9 @@
     <Reference Include="HeBianGu.Common.DataBase.Sqlite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Solution\packages\HeBianGu.Common.DataBase.Sqlite.1.0.0\lib\net45\HeBianGu.Common.DataBase.Sqlite.dll</HintPath>
     </Reference>
+    <Reference Include="HeBianGu.General.DataBase.SysConfig, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Solution\packages\HeBianGu.General.DataBase.SysConfig.1.0.0\lib\net45\HeBianGu.General.DataBase.SysConfig.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
@@ -119,10 +122,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\.NetFrameWork-CommonBase\Source\GeneralLayer\HeBianGu.General.DataBase.SysConfig\HeBianGu.General.DataBase.SysConfig.csproj">
-      <Project>{0d188ed5-aa0d-4265-9769-1b5b4052bed4}</Project>
-      <Name>HeBianGu.General.DataBase.SysConfig</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\WPF-ControlBase\Source\Base\HeBianGu.Base.WpfBase\HeBianGu.Base.WpfBase.csproj">
       <Project>{a74196bf-acd5-419f-b690-c88bda11bd8b}</Project>
       <Name>HeBianGu.Base.WpfBase</Name>

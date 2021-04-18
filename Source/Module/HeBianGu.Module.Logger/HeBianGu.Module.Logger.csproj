@@ -49,6 +49,9 @@
     <Reference Include="HeBianGu.Common.DataBase.Sqlite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Solution\packages\HeBianGu.Common.DataBase.Sqlite.1.0.0\lib\net45\HeBianGu.Common.DataBase.Sqlite.dll</HintPath>
     </Reference>
+    <Reference Include="HeBianGu.General.DataBase.Logger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Solution\packages\HeBianGu.General.DataBase.Logger.1.0.0\lib\net45\HeBianGu.General.DataBase.Logger.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
@@ -147,10 +150,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\.NetFrameWork-CommonBase\Source\GeneralLayer\HeBianGu.General.DataBase.Logger\HeBianGu.General.DataBase.Logger.csproj">
-      <Project>{08c9f915-ae16-403c-8a1c-25835a2daf92}</Project>
-      <Name>HeBianGu.General.DataBase.Logger</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\WPF-ControlBase\Source\Base\HeBianGu.Base.WpfBase\HeBianGu.Base.WpfBase.csproj">
       <Project>{a74196bf-acd5-419f-b690-c88bda11bd8b}</Project>
       <Name>HeBianGu.Base.WpfBase</Name>
