@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="HeBianGu.App.ModuleOffice.View.ModuleNavigator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HeBianGu.App.ModuleOffice.View" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:h="QQ:908293466"
+             mc:Ignorable="d"
+             DataContext="{Binding Source={StaticResource S.DataSource.Locator},Path=ShellViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ListBox VerticalAlignment="Stretch" ItemsSource="{Binding Collection}" SelectedItem="{Binding SelectedModuleNode}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <StackPanel Margin="10,0" VerticalAlignment="Center" TextBlock.Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=Foreground}">
+                            <TextBlock Text="{Binding Icon}" FontSize="40" Style="{StaticResource S.TextBlock.FIcon}"/>
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel  Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <h:Interaction.Triggers>
+                <h:EventTrigger EventName="SelectionChanged">
+                    <h:InvokeCommandAction Command="{Binding SelectionChangedModuleCommand}" EventArgsParameterPath="RemovedItems" PassEventArgsToCommand="True"/>
+                </h:EventTrigger>
+            </h:Interaction.Triggers>
+        </ListBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,82 @@
+﻿<h:OfficeWindowBase x:Class="HeBianGu.App.ModuleOffice.ShellWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HeBianGu.App.ModuleOffice"
+        xmlns:h="QQ:908293466"
+        DataContext="{Binding Source={StaticResource S.DataSource.Locator},Path=ShellViewModel}" 
+        Style="{DynamicResource S.Window.Office.Default}" CaptionBackground="{DynamicResource S.Brush.Accent}"
+        NotifyIconSource="/HeBianGu.General.WpfControlLib;component/Resources/iBook.ico"
+        xmlns:prism="http://prismlibrary.com/" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d" Title="Office" Height="700" Width="1100">
+    <h:OfficeWindowBase.LinkActions>
+        <h:LinkAction  DisplayName="信息" Logo="&#xe7e5;" Controller="Time" Action="Home"/>
+        <h:LinkAction  DisplayName="新建" Logo="&#xe908;"  Controller="Random" Action="Home" />
+        <h:LinkAction  DisplayName="打开" Logo="&#xe656;" Controller="Flash" Action="Home"/>
+        <h:LinkAction  DisplayName="保存" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="另存为" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="历史记录" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="打印" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="共享" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="保存" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="导出" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="关闭" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="账户" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="反馈" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="选项" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+    </h:OfficeWindowBase.LinkActions>
+    
+    <Grid Margin="0,-35">  
+        <DockPanel>
+            <!--功能切换-->
+            <ListBox x:Name="lb_modules" Margin="60,0,0,-3" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0" ItemsSource="{Binding Functions}" SelectedItem="{Binding SelectedFunction}" SelectedIndex="0" DockPanel.Dock="Top" Height="{DynamicResource S.Window.Item.Height}" VerticalAlignment="Top">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" Margin="10,0"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel  Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource S.ListBoxItem.Office}">
+                        <Setter Property="h:Cattach.SelectBackground" Value="{DynamicResource S.Brush.Dark.1}"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
+
+            <!--工具位置-->
+            <Border  Height="100" h:Cattach.IsVisible="{Binding TitleVisble}" Background="{DynamicResource S.Brush.Dark.1}" DockPanel.Dock="Top" VerticalAlignment="Top">
+                <h:Cattach.VisibleActions>
+                    <h:ActionCollection>
+                        <h:TranslateAction HiddenOrCollapsed="Collapsed" Duration="50"/>
+                    </h:ActionCollection>
+                </h:Cattach.VisibleActions>
+
+                <ContentControl  prism:RegionManager.RegionName="ToolBarRegion"/>
+            </Border>
+
+            <!--模块内容位置-->
+            <Border>
+                <ContentControl  prism:RegionManager.RegionName="ModuleRegion"/>
+            </Border>
+        </DockPanel>
+
+        <CheckBox  Style="{StaticResource S.CheckBox.Single}"  h:Cattach.SelectedText="&#xe66e;"
+                  h:Cattach.UnSelectedText="&#xe66f;" Margin="5,0" IsChecked="{Binding TitleVisble}"
+                  Foreground="{DynamicResource S.Brush.TextForeground.White}"
+                  h:Cattach.SelectForeground="{DynamicResource S.Brush.TextForeground.White}"
+                  h:Cattach.FIconSize="{DynamicResource S.FIcon.Size.Small}"
+                  HorizontalAlignment="Right" VerticalAlignment="Top"/>
+    </Grid>
+</h:OfficeWindowBase>

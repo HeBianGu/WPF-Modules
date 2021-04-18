@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="HeBianGu.Module.ModuleC.Views.ModuleCEditer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HeBianGu.Module.ModuleC.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DockPanel>
+            <Button Content="复制" Style="{StaticResource S.Button.Transparent}"/>
+            <Button Content="粘贴" Style="{StaticResource S.Button.Transparent}"/>
+            <Button Content="删除" Style="{StaticResource S.Button.Transparent}"/>
+            <Button Content="保存" Style="{StaticResource S.Button.Transparent}"/>
+            <Button Content="另存为" Style="{StaticResource S.Button.Transparent}"/>
+            <Button Content="退出" Style="{StaticResource S.Button.Transparent}"/>
+        </DockPanel>
+    </Grid>
+</UserControl>
