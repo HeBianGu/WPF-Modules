@@ -1,6 +1,7 @@
 ﻿using CommonServiceLocator;
 using HeBianGu.Base.WpfBase;
 using HeBianGu.Common.DataBase;
+using HeBianGu.Control.PropertyGrid;
 using HeBianGu.General.WpfControlLib;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace HeBianGu.General.ModuleService
         {
             this.AddItem = new T();
 
-            bool r = await MessageService.ShowObjectWithPropertyForm(this.AddItem, null, "新增");
+            bool r = await PropertyGrid.ShowObject(this.AddItem, null, "新增");
 
             if (!r) return;
 

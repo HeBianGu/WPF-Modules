@@ -10,22 +10,52 @@
         NotifyIconSource="/HeBianGu.General.WpfControlLib;component/Resources/iBook.ico"
         xmlns:prism="http://prismlibrary.com/" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d" Title="Office" Height="700" Width="1100">
+    
     <h:OfficeWindowBase.LinkActions>
-        <h:LinkAction  DisplayName="信息" Logo="&#xe7e5;" Controller="Time" Action="Home"/>
-        <h:LinkAction  DisplayName="新建" Logo="&#xe908;"  Controller="Random" Action="Home" />
-        <h:LinkAction  DisplayName="打开" Logo="&#xe656;" Controller="Flash" Action="Home"/>
-        <h:LinkAction  DisplayName="保存" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
-        <h:LinkAction  DisplayName="另存为" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
-        <h:LinkAction  DisplayName="历史记录" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
-        <h:LinkAction  DisplayName="打印" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
-        <h:LinkAction  DisplayName="共享" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
-        <h:LinkAction  DisplayName="保存" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
-        <h:LinkAction  DisplayName="导出" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
-        <h:LinkAction  DisplayName="关闭" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
-        <h:LinkAction  DisplayName="账户" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
-        <h:LinkAction  DisplayName="反馈" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
-        <h:LinkAction  DisplayName="选项" Logo="&#xe656;" Controller="Fluid" Action="Home"/>
+        <h:LinkAction  DisplayName="信息" Logo="&#xe7e5;" Controller="Loyout" Action="Info"/>
+        <h:LinkAction  DisplayName="新建" Logo="&#xe908;"  Controller="Loyout" Action="New" />
+        <h:LinkAction  DisplayName="打开" Logo="&#xe656;" Controller="Loyout" Action="Open"/>
+
+        <h:LinkAction  DisplayName="许可" Logo="&#xe656;" Controller="Loyout" Action="Account"/>
+        <h:LinkAction  DisplayName="服务器" Logo="&#xe656;" Controller="Loyout" Action="Connect"/>
+        <!--<h:LinkAction  DisplayName="共享" Logo="&#xe656;" Controller="Loyout" Action="Home"/>-->
+        
+        <h:LinkAction  DisplayName="保存" Logo="&#xe656;" Controller="Loyout" Action="Home"/>
+        <h:LinkAction  DisplayName="另存为" Logo="&#xe656;" Controller="Loyout" Action="Home"/>
+        <h:LinkAction  DisplayName="导出" Logo="&#xe656;" Controller="Loyout" Action="Home"/>
+
+        <h:LinkAction  DisplayName="反馈" Logo="&#xe656;" Controller="Loyout" Action="Home"/>
+        <h:LinkAction  DisplayName="选项" Logo="&#xe656;" Controller="Loyout" Action="Home"/>
+        <h:LinkAction  DisplayName="关闭" Logo="&#xe656;" Controller="Loyout" Action="Home"/>
+
     </h:OfficeWindowBase.LinkActions>
+
+
+    <h:OfficeWindowBase.TitleContent>
+        <DockPanel LastChildFill="False">
+
+            <Button Style="{DynamicResource S.Button.Transparent.AccentBack}" h:Cattach.FIcon="&#xe8cb;" Height="25"  Width="25"/>
+            
+            <!--<Button Style="{DynamicResource S.Button.Transparent}" h:Cattach.FIcon="&#xe8a6;" 
+                    Foreground="{DynamicResource S.Brush.TextForeground.White}" Height="25"
+                    h:Cattach.MouseOverBackground="{DynamicResource S.Brush.White.Opactiy.2}"/>-->
+
+
+            <Button Style="{DynamicResource S.Button.Transparent.AccentBack}" h:Cattach.FIcon="&#xe8a5;" Height="25" Width="25"/>
+
+            <Button Style="{DynamicResource S.Button.Transparent.AccentBack}" h:Cattach.FIcon="&#xe8a7;" Height="25" Width="25"/>
+            
+
+            <!--<Button Style="{DynamicResource S.Button.Transparent}" h:Cattach.FIcon="&#xe77e;" 
+                    Foreground="{DynamicResource S.Brush.TextForeground.White}" Height="25"
+                    h:Cattach.MouseOverBackground="{DynamicResource S.Brush.White.Opactiy.2}"/>
+
+            <Button Style="{DynamicResource S.Button.Transparent}" h:Cattach.FIcon="&#xe710;" 
+                    Foreground="{DynamicResource S.Brush.TextForeground.White}" Height="25"
+                    h:Cattach.MouseOverBackground="{DynamicResource S.Brush.White.Opactiy.2}"/>-->
+
+        </DockPanel>
+    </h:OfficeWindowBase.TitleContent>
     
     <Grid Margin="0,-35,0,0">  
         <DockPanel>
@@ -72,27 +102,27 @@
             </Border>
         </DockPanel>
 
-        <DockPanel HorizontalAlignment="Right" VerticalAlignment="Top">
+        <DockPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="2,0">
             <CheckBox  Style="{StaticResource S.CheckBox.Single}"  h:Cattach.SelectedText="&#xe66e;"
                   h:Cattach.UnSelectedText="&#xe66f;" Margin="5,0" IsChecked="{Binding TitleVisble}"
                   Foreground="{DynamicResource S.Brush.TextForeground.White}"
                   h:Cattach.SelectForeground="{DynamicResource S.Brush.TextForeground.White}"
+                  h:Cattach.MouseOverBackground="{DynamicResource S.Brush.TextForeground.White.Opacity.2}"
                   h:Cattach.FIconSize="{DynamicResource S.FIcon.Size.Small}"/>
 
-            <Button Style="{StaticResource S.Button.Transparent}" h:Cattach.FIcon="&#xe620;" 
+            <!--<Button Style="{StaticResource S.Button.Transparent}" h:Cattach.FIcon="&#xe620;" 
                     Foreground="{DynamicResource S.Brush.TextForeground.White}"/>
 
             <Button Style="{StaticResource S.Button.Transparent}" h:Cattach.FIcon="&#xe79c;" 
-                    Foreground="{DynamicResource S.Brush.TextForeground.White}"/>
+                    Foreground="{DynamicResource S.Brush.TextForeground.White}"/>-->
 
-            <Button Style="{StaticResource S.Button.Transparent}" h:Cattach.FIcon="&#xe600;" 
-                    Foreground="{DynamicResource S.Brush.TextForeground.White}"/>
+            <!--<Button Style="{StaticResource S.Button.Transparent}" h:Cattach.FIcon="&#xe600;" 
+                    Foreground="{DynamicResource S.Brush.TextForeground.White}"/>-->
 
-            <Button Style="{StaticResource S.Button.Transparent}" h:Cattach.FIcon="&#xe853;" 
-                    Foreground="{DynamicResource S.Brush.TextForeground.White}"/>
+            <Button Style="{DynamicResource S.Button.Transparent.AccentBack}" h:Cattach.FIcon="&#xe853;" Width="25" Height="25"/>
 
-            <Button Style="{StaticResource S.Button.Transparent}" h:Cattach.FIcon="&#xe854;" 
-                    Foreground="{DynamicResource S.Brush.TextForeground.White}"/>
+            <!--<Button Style="{StaticResource S.Button.Transparent}" h:Cattach.FIcon="&#xe854;" 
+                    Foreground="{DynamicResource S.Brush.TextForeground.White}"/>-->
         </DockPanel>
     </Grid>
 </h:OfficeWindowBase>

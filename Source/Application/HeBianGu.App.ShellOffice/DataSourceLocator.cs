@@ -21,6 +21,6 @@ namespace HeBianGu.App.ShellOffice
             ShellViewModel = unity.Resolve<ShellViewModel>();
         }
 
-        public ShellViewModel ShellViewModel { get; set; }
+        public ShellViewModel ShellViewModel { get; set; } 
     }
 }

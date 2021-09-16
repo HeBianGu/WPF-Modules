@@ -10,10 +10,10 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <h:ObjectPropertyForm Title="新增" x:Name="form" Style="{StaticResource S.ObjectPropertyForm.Default.WithSumitClose}" Sumit="ObjectPropertyForm_Sumit"
-                              SelectObject="{Binding AddItem}">
-            <h:ObjectPropertyForm.Resources>
-                <DataTemplate DataType="{x:Type h:ComboboxPropertyItem}">
+        <h:PropertyGrid Title="新增" x:Name="form" Style="{StaticResource S.PropertyGrid.Default.WithSumitClose}" Sumit="ObjectPropertyForm_Sumit"
+                              SelectObject="{Binding AddItem}" VerticalAlignment="Center" Margin="20,0">
+            <h:PropertyGrid.Resources>
+                <!--<DataTemplate DataType="{x:Type h:ComboboxPropertyItem}">
                     <Grid  Visibility="{Binding Visibility}" Width="{Binding RelativeSource={RelativeSource AncestorType=h:ObjectPropertyForm},Path=Width-5}" Height="{DynamicResource S.Window.Row.Height}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -23,6 +23,34 @@
                         <ComboBox Style="{DynamicResource S.ComboBox.Single.Label}" SelectedValue="{Binding RelativeSource={RelativeSource AncestorType=h:ObjectPropertyForm},Path=DataContext.AddItem.RoleID}" 
                                   h:Cattach.Label="{Binding Name}" DisplayMemberPath="RoleName" SelectedValuePath="ID"
                                   ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=h:ObjectPropertyForm},Path=DataContext.Roles}">
+                            --><!--<ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding RoleName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>--><!--
+                        </ComboBox>
+
+
+                        <TextBlock Text="&#xe626;" Grid.Column="3" Style="{DynamicResource S.TextBlock.FIcon}"
+                       Foreground="{DynamicResource S.Brush.Red.Notice}" Visibility="{Binding Message,Converter={x:Static h:XConverter.VisibilityWithOutStringConverter},ConverterParameter={x:Null}}"
+                       FontSize="14"   TextTrimming="CharacterEllipsis" ToolTip="{Binding Message}"
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>-->
+
+                <DataTemplate x:Key="S.PropertyGrid.RoleSelecter">
+                    <Grid  Visibility="{Binding Visibility}" Height="{DynamicResource S.Window.Row.Height}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <ComboBox Style="{DynamicResource S.ComboBox.Single.Label}" SelectedValue="{Binding RelativeSource={RelativeSource AncestorType=h:PropertyGrid},Path=DataContext.AddItem.RoleID}" 
+                                  h:Cattach.Label="{Binding Name}" DisplayMemberPath="RoleName" SelectedValuePath="ID"
+                                  ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=h:PropertyGrid},Path=DataContext.Roles}">
+                     
                             <!--<ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding RoleName}"/>
@@ -38,13 +66,16 @@
                        VerticalAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
-            </h:ObjectPropertyForm.Resources>
+            </h:PropertyGrid.Resources>
 
+            <h:PropertyGrid.ItemTemplateSelector>
+                <local:UserPropertyTemplateSelector RoleSelecterTempate="{StaticResource S.PropertyGrid.RoleSelecter}"/>
+            </h:PropertyGrid.ItemTemplateSelector>
             <h:Interaction.Triggers>
                 <h:EventTrigger EventName="Close">
                     <h:InvokeCommandAction Command="{x:Static h:CommandService.MessageLayerCloseCommand}"/>
                 </h:EventTrigger>
             </h:Interaction.Triggers>
-        </h:ObjectPropertyForm>
+        </h:PropertyGrid>
     </Grid>
 </UserControl>

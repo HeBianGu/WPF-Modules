@@ -58,6 +58,9 @@
     <Reference Include="HeBianGu.Common.LocalConfig, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Solution\packages\HeBianGu.Common.LocalConfig.2.0.1\lib\net45\HeBianGu.Common.LocalConfig.dll</HintPath>
     </Reference>
+    <Reference Include="HeBianGu.General.DataBase.Identify, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Solution\packages\HeBianGu.General.DataBase.Identify.1.0.0\lib\net45\HeBianGu.General.DataBase.Identify.dll</HintPath>
+    </Reference>
     <Reference Include="HeBianGu.General.DataBase.Logger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Solution\packages\HeBianGu.General.DataBase.Logger.1.0.0\lib\net45\HeBianGu.General.DataBase.Logger.dll</HintPath>
     </Reference>
@@ -122,14 +125,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controller\LoyoutController.cs" />
     <Compile Include="Domain\AssemblyDomain.cs" />
     <Compile Include="Domain\IAssemblyDomain.cs" />
+    <Compile Include="Provider\LogService.cs" />
     <Compile Include="Provider\NavigatorFunctionNode.cs" />
     <Compile Include="Provider\LocalizeService.cs" />
+    <Compile Include="ViewModel\Loyout\LoyoutViewModel.cs" />
     <Compile Include="ViewModel\ShellViewModel.cs" />
     <Page Include="Theme\Default.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Loyout\InfoControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Loyout\NewControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Loyout\OpenControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Loyout\AccountControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Loyout\ConnectControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Loyout\HomeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ModuleNavigator.xaml">
       <SubType>Designer</SubType>
@@ -144,6 +174,24 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataSourceLocator.cs" />
+    <Compile Include="View\Loyout\InfoControl.xaml.cs">
+      <DependentUpon>InfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Loyout\NewControl.xaml.cs">
+      <DependentUpon>NewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Loyout\OpenControl.xaml.cs">
+      <DependentUpon>OpenControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Loyout\AccountControl.xaml.cs">
+      <DependentUpon>AccountControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Loyout\ConnectControl.xaml.cs">
+      <DependentUpon>ConnectControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Loyout\HomeControl.xaml.cs">
+      <DependentUpon>HomeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ModuleNavigator.xaml.cs">
       <DependentUpon>ModuleNavigator.xaml</DependentUpon>
     </Compile>
@@ -180,6 +228,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\DotNet-License\Source\Control\HeBianGu.Control.Lic\HeBianGu.Control.Lic.csproj">
+      <Project>{84E2A34F-E6A3-4452-994E-F2C3112CE001}</Project>
+      <Name>HeBianGu.Control.Lic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\DotNet-License\Source\General\HeBianGu.General.LicService\HeBianGu.General.LicService.csproj">
+      <Project>{D63BE7AB-25FE-417A-9234-733906ED34E7}</Project>
+      <Name>HeBianGu.General.LicService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\WPF-ControlBase\Source\Base\HeBianGu.Base.WpfBase\HeBianGu.Base.WpfBase.csproj">
       <Project>{a74196bf-acd5-419f-b690-c88bda11bd8b}</Project>
       <Name>HeBianGu.Base.WpfBase</Name>
@@ -187,6 +243,18 @@
     <ProjectReference Include="..\..\..\..\WPF-ControlBase\Source\General\HeBianGu.General.WpfControlLib\HeBianGu.General.WpfControlLib.csproj">
       <Project>{e2418bbf-223a-4a46-bbad-f43088966067}</Project>
       <Name>HeBianGu.General.WpfControlLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\WPF-ControlBase\Source\General\HeBianGu.General.WpfMvc\HeBianGu.General.WpfMvc.csproj">
+      <Project>{410ebd59-ade6-4c39-aa8a-95bca10b9239}</Project>
+      <Name>HeBianGu.General.WpfMvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\WPF-Controls\Source\Control\HeBianGu.Control.PagedDataGrid\HeBianGu.Control.PagedDataGrid.csproj">
+      <Project>{42842c36-e62c-474a-b058-8f38fa78c919}</Project>
+      <Name>HeBianGu.Control.PagedDataGrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\WPF-Controls\Source\Control\HeBianGu.Control.PropertyGrid\HeBianGu.Control.PropertyGrid.csproj">
+      <Project>{1e817923-75ac-42ec-b2dd-3951333e7cec}</Project>
+      <Name>HeBianGu.Control.PropertyGrid</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\General\HeBianGu.General.ModuleService\HeBianGu.General.ModuleService.csproj">
       <Project>{A62B82DF-D446-479E-9815-C8BC40EFD077}</Project>

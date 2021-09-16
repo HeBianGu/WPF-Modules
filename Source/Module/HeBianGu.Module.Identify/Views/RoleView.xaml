@@ -12,9 +12,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="0">
         <Grid>
-            <h:PagedDataGrid PageCountVisible="Collapsed" Margin="0,0" PageCount="17" BorderThickness="0" Style="{StaticResource S.PagedDataGrid.Default}" DataSource="{Binding Collection,Mode=TwoWay}">
+            <h:PagedDataGrid PageCountVisible="Collapsed" AutoGenerateColumns="False" Margin="0,0" PageCount="17" BorderThickness="0" Style="{StaticResource S.PagedDataGrid.Default}" DataSource="{Binding Collection,Mode=TwoWay}">
                 <h:PagedDataGrid.Columns>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.Header>
                             <CheckBox Content="全选"
                                       Command="{Binding RelativeSource={RelativeSource AncestorType=DataGrid},Path=DataContext.SelectedAllCommand}" 

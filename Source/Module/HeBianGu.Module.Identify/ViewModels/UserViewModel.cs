@@ -1,4 +1,5 @@
 ﻿using HeBianGu.Base.WpfBase;
+using HeBianGu.Control.PropertyGrid;
 using HeBianGu.General.DataBase.Identify;
 using HeBianGu.General.ModuleService;
 using HeBianGu.General.WpfControlLib;
@@ -74,7 +75,7 @@ namespace HeBianGu.Module.Identify
 
             dialog.Sumit = () =>
               {
-                  var result = ObjectPropertyFactory.ModelState(this.AddItem, out List<string> errors);
+                  var result = this.AddItem.ModelState(out List<string> errors);
 
                   if (result)
                   {
@@ -118,5 +119,20 @@ namespace HeBianGu.Module.Identify
         }
 
         #endregion
+    }
+
+    public class UserPropertyTemplateSelector : PropertyGridTemplateSelector
+    {
+        public DataTemplate RoleSelecterTempate { get; set; }
+
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        {
+            if (item is ObjectPropertyItem objectItem)
+            {
+                if (objectItem.PropertyInfo.Name == "RoleID") return RoleSelecterTempate;
+            }
+
+            return base.SelectTemplate(item, container);
+        }
     }
 }

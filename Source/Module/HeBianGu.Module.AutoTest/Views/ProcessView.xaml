@@ -1,0 +1,535 @@
+﻿<UserControl x:Class="HeBianGu.Module.AutoTest.Views.ProcessView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HeBianGu.Module.AutoTest.Views"
+             xmlns:vm="clr-namespace:HeBianGu.Module.AutoTest"
+             xmlns:prism="http://prismlibrary.com/" 
+             xmlns:ms="clr-namespace:HeBianGu.General.ModuleService;assembly=HeBianGu.General.ModuleService"
+             ms:ViewModelLocator.ViewModelType="{x:Type vm:ProcessViewModel}"
+             xmlns:h="QQ:908293466" xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" Background="{DynamicResource S.Brush.TextBackground.Default}"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Margin="0">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="pack://application:,,,/HeBianGu.Control.Drawer;component/Drawer.xaml"/>
+                    <ResourceDictionary Source="pack://application:,,,/HeBianGu.Control.Chart2D;component/Theme/Default.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid>
+            <!--工程-->
+            <Border Grid.Column="0" Margin="2" BorderThickness="1">
+                <GroupBox Header="测试序列" Padding="0">
+                    <ContentControl Content="{Binding TestConfig}">
+                        <ContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <ScrollViewer>
+                                    <ListBox ItemsSource="{Binding TestCategories}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <!--<Expander Header="{Binding Model.Name}" IsExpanded="True" HorizontalAlignment="Stretch">
+                                                        
+                                                    </Expander>-->
+
+                                                <ListBox ItemsSource="{Binding Items}" Style="{DynamicResource S.ListBox.Clear}">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <GroupBox Header="{Binding Model.ShowName}" Padding="10" Visibility="{Binding Selected,Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                                                <DockPanel>
+                                                                    <Border Background="Black" Width="400" DockPanel.Dock="Right" Margin="10,0" CornerRadius="{DynamicResource S.Window.Item.CornerRadius}">
+
+                                                                        <h:Chart Style="{DynamicResource S.Chart.Coord.WithOutTool}" DrawOnce="{Binding DrawOnce,Mode=TwoWay}" yAxisAuto="True" xAxisAuto="True"  Background="#252525" 
+                                                                                     xDatas="{Binding xDatas}" yDatas="{Binding yDatas}" Padding="50,10,10,30">
+                                                                            <h:Series DisplayName="{Binding Model.ShowName}" Foreground="#FFFFFB8B" >
+                                                                                <h:Line UseVisual="True" Foreground="Yellow"/>
+                                                                                <h:MarkPosition MarkValueType="Max" Foreground="Green"/>
+                                                                                <h:MarkPosition MarkValueType="Min" Foreground="Red"/>
+                                                                                <h:MarkPosition MarkValueType="Last" Foreground="Orange"/>
+                                                                            </h:Series>
+
+                                                                            <h:Chart.LegendStyle>
+                                                                                <Style TargetType="h:Legend">
+                                                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                                                </Style>
+                                                                            </h:Chart.LegendStyle>
+                                                                        </h:Chart>
+                                                                    </Border>
+
+                                                                    <Grid>
+                                                                        <DockPanel>
+                                                                            <GroupBox Header="参数" Padding="10,0" Margin="10,0" Style="{DynamicResource S.GroupBox.System}" BorderBrush="{DynamicResource ButtonBorder}" DockPanel.Dock="Top">
+                                                                                <ItemsControl ItemsSource="{Binding Parameters}">
+                                                                                    <ItemsControl.ItemTemplate>
+                                                                                        <DataTemplate>
+                                                                                            <Grid HorizontalAlignment="Stretch">
+                                                                                                <Grid Margin="3,3" x:Name="grid_1" HorizontalAlignment="Stretch">
+                                                                                                    <Grid.ColumnDefinitions>
+                                                                                                        <ColumnDefinition Width="*"/>
+                                                                                                        <ColumnDefinition Width="*"/>
+                                                                                                        <ColumnDefinition Width="Auto"/>
+                                                                                                    </Grid.ColumnDefinitions>
+
+                                                                                                    <TextBlock  Name="paraName" TextTrimming="CharacterEllipsis"  Text="{Binding Model.ShowName}" Margin="5,5,5,5" TextAlignment="Left" HorizontalAlignment="Stretch"/>
+
+                                                                                                    <Grid Grid.Column="1">
+                                                                                                        <TextBox Name="paraValue" Text="{Binding Model.DefaultValue,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1">
+                                                                                                            <!--<h:Interaction.Triggers>
+                                                                                                                        <i:EventTrigger EventName="LostFocus">
+                                                                                                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=DataContext.InputLostFocusCommand}" CommandParameter="{Binding .}"/>
+                                                                                                                        </i:EventTrigger>
+
+                                                                                                                        <h:EventTrigger EventName="TextChanged">
+                                                                                                                            <h:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:ProcessView},Path=DataContext.TextChangedCommand}"/>
+                                                                                                                        </h:EventTrigger>
+                                                                                                                    </h:Interaction.Triggers>-->
+                                                                                                        </TextBox>
+
+                                                                                                        <TextBlock Text="{Binding Model.Unit}" HorizontalAlignment="Right" IsHitTestVisible="False" Visibility="{Binding IsDisplay,Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="2" Background="Transparent" Margin="5,0" VerticalAlignment="Center"  TextAlignment="Left"/>
+
+                                                                                                    </Grid>
+                                                                                                </Grid>
+                                                                                            </Grid>
+
+                                                                                        </DataTemplate>
+                                                                                    </ItemsControl.ItemTemplate>
+
+                                                                                    <ItemsControl.ItemsPanel>
+                                                                                        <ItemsPanelTemplate>
+                                                                                            <UniformGrid Columns="4"/>
+                                                                                        </ItemsPanelTemplate>
+                                                                                    </ItemsControl.ItemsPanel>
+                                                                                </ItemsControl>
+
+                                                                            </GroupBox>
+
+                                                                            <GroupBox Header="指标" Padding="10,0" Margin="10,0" BorderBrush="{DynamicResource ButtonBorderHover}">
+                                                                                <ItemsControl ItemsSource="{Binding Limits}">
+                                                                                    <ItemsControl.ItemTemplate>
+                                                                                        <DataTemplate>
+                                                                                            <ItemsControl ItemsSource="{Binding CompareConditions}">
+                                                                                                <ItemsControl.ItemTemplate>
+                                                                                                    <DataTemplate>
+                                                                                                        <StackPanel>
+                                                                                                            <Grid Margin="3,3" Visibility="{Binding Model.UpVisible,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                                                                                <Grid.ColumnDefinitions>
+                                                                                                                    <ColumnDefinition Width="*"/>
+                                                                                                                    <ColumnDefinition Width="*"/>
+                                                                                                                    <ColumnDefinition Width="Auto"  MinWidth="0"/>
+                                                                                                                </Grid.ColumnDefinitions>
+                                                                                                                <TextBlock Background="Transparent" Margin="5" TextAlignment="Left" HorizontalAlignment="Stretch">
+                                                                                                                                     <Run Text="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},Path=DataContext.Model.ShowName}"/>
+                                                                                                                                     <Run Text="{Binding Model.Compare}" FontSize="12"/>
+                                                                                                                </TextBlock>
+
+                                                                                                                <Grid Grid.Column="1">
+                                                                                                                    <TextBox Text="{Binding Model.Value,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1"  Grid.ColumnSpan="2" >
+                                                                                                                        <!--<h:Interaction.Triggers>
+                                                                                                                                    <i:EventTrigger EventName="LostFocus">
+                                                                                                                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=DataContext.InputLostFocusCommand}" CommandParameter="{Binding .}"/>
+                                                                                                                                    </i:EventTrigger>
+                                                                                                                                    <h:EventTrigger EventName="TextChanged">
+                                                                                                                                        <h:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:ProcessView},Path=DataContext.TextChangedCommand}"/>
+                                                                                                                                    </h:EventTrigger>
+                                                                                                                                </h:Interaction.Triggers>-->
+                                                                                                                    </TextBox>
+
+                                                                                                                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},Path=DataContext.Model.Unit}" Visibility="{Binding Model.IsDisplay,Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="2" Background="Transparent" Margin="5,0" VerticalAlignment="Center"  TextAlignment="Left" HorizontalAlignment="Right"/>
+
+                                                                                                                </Grid>
+                                                                                                            </Grid>
+                                                                                                        </StackPanel>
+                                                                                                    </DataTemplate>
+                                                                                                </ItemsControl.ItemTemplate>
+                                                                                                <ItemsControl.ItemsPanel>
+                                                                                                    <ItemsPanelTemplate>
+                                                                                                        <UniformGrid Columns="4"/>
+                                                                                                    </ItemsPanelTemplate>
+                                                                                                </ItemsControl.ItemsPanel>
+                                                                                            </ItemsControl>
+                                                                                        </DataTemplate>
+                                                                                    </ItemsControl.ItemTemplate>
+
+
+                                                                                </ItemsControl>
+                                                                                <GroupBox.Style>
+                                                                                    <Style TargetType="GroupBox" BasedOn="{StaticResource S.GroupBox.System}">
+                                                                                        <Style.Triggers>
+                                                                                            <DataTrigger Binding="{Binding TargetValidations.Count}" Value="0">
+                                                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                                                            </DataTrigger>
+                                                                                        </Style.Triggers>
+                                                                                    </Style>
+                                                                                </GroupBox.Style>
+                                                                            </GroupBox>
+                                                                        </DockPanel>
+
+                                                                        <Border x:Name="border" h:Cattach.IsVisible="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem},Path=IsMouseOver}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Background="{DynamicResource S.Brush.Accent.MouseOver.Background}" CornerRadius="{DynamicResource S.Window.Item.CornerRadius}" Height="{DynamicResource S.Window.Row.Height}">
+                                                                            <DockPanel>
+                                                                                <Button Content="删除" Style="{DynamicResource S.Button.Transparent}"/>
+                                                                                <Button Content="运行" Style="{DynamicResource S.Button.Transparent}"/>
+                                                                                <Button Content="保存" Style="{DynamicResource S.Button.Transparent}"/>
+                                                                            </DockPanel>
+                                                                            <h:Cattach.VisibleActions>
+                                                                                <h:ActionCollection>
+                                                                                    <h:TranslateAction StartPoint="0,100" EndPoint="0,100"/>
+                                                                                </h:ActionCollection>
+                                                                            </h:Cattach.VisibleActions>
+                                                                        </Border>
+                                                                    </Grid>
+                                                                </DockPanel>
+                                                            </GroupBox>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+
+                                                    <ListBox.ItemContainerStyle>
+                                                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                                            <Setter Property="Visibility" Value="{Binding Selected,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="ListBoxItem" >
+                                                                        <ContentPresenter/>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </ListBox.ItemContainerStyle>
+                                                </ListBox>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </ScrollViewer>
+                            </DataTemplate>
+                        </ContentControl.ContentTemplate>
+                    </ContentControl>
+                </GroupBox>
+            </Border>
+
+            <h:Drawer Style="{DynamicResource S.Drawer.Bottom.Default}" IsExpanded="True" Header="输出日志" Height="200" VerticalAlignment="Bottom">
+                <ListBox ItemsSource="{Binding Message}"/>
+            </h:Drawer>
+
+            <h:Drawer Style="{DynamicResource S.Drawer.Left.Default}" IsExpanded="True" Header="测试项列表">
+                <ContentControl Content="{Binding TestConfig}" Width="250" Margin="-10">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding TestCategories}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Expander Header="{Binding Model.Name}" Padding="0" IsExpanded="True" Style="{DynamicResource S.Expander.Clear}">
+                                            <ListBox ItemsSource="{Binding Items}" Style="{DynamicResource S.ListBox.Clear}">
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <DockPanel HorizontalAlignment="Stretch">
+                                                            <CheckBox IsChecked="{Binding Selected}">
+                                                                <!--<i:Interaction.Triggers>
+                                                                        <i:EventTrigger EventName="Checked">
+                                                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:DefaultControl},Path=DataContext.TextChangedCommand}" CommandParameter="{Binding .}"/>
+                                                                        </i:EventTrigger>
+                                                                        <i:EventTrigger EventName="Unchecked">
+                                                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:DefaultControl},Path=DataContext.TextChangedCommand}" CommandParameter="{Binding .}"/>
+                                                                        </i:EventTrigger>
+                                                                    </i:Interaction.Triggers>-->
+                                                            </CheckBox>
+                                                            <TextBlock Text="{Binding Model.ShowName}"/>
+                                                            <!--<TextBlock Text="{Binding ShowName}"/>
+                                                                        <TextBlock Text="{Binding DLLName}"/>
+                                                                        <TextBlock Text="{Binding ClassName}"/>
+                                                                        <TextBlock Text="{Binding Name}"/>-->
+                                                        </DockPanel>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </Expander>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </h:Drawer>
+
+
+
+            <!--<DockPanel>
+                    -->
+            <!--工具栏-->
+            <!--
+                    <DockPanel DockPanel.Dock="Top"  Margin="10,0" LastChildFill="False">
+                        <Button Content="保存" Command="{Binding SaveProjectCommand}"/>
+
+                        <Button Content="运行" Command="{Binding RelayCommand}" CommandParameter="Run"/>
+
+                    </DockPanel>
+
+                    <Separator DockPanel.Dock="Top" Margin="-2,0" Background="{DynamicResource DataGridForeground}"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource DataGridForeground}">
+                            -->
+            <!--测试项列表-->
+            <!--
+                            <DockPanel x:Name="dp" Grid.Column="0"  Margin="5">
+                                <GroupBox Header="测试项列表" Padding="0,6">
+                                    <ContentControl Content="{Binding TestConfig}">
+                                        <ContentControl.ContentTemplate>
+                                            <DataTemplate>
+                                                <ItemsControl ItemsSource="{Binding TestCategories}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Expander Header="{Binding Model.Name}" IsExpanded="True">
+                                                                <ListBox ItemsSource="{Binding Items}">
+                                                                    <ListBox.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <DockPanel HorizontalAlignment="Stretch">
+                                                                                <CheckBox IsChecked="{Binding Selected}">
+                                                                                    <h:Interaction.Triggers>
+                                                                                        <h:EventTrigger EventName="Checked">
+                                                                                            <h:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:ProcessView},Path=DataContext.TextChangedCommand}" CommandParameter="{Binding .}"/>
+                                                                                        </h:EventTrigger>
+                                                                                        <h:EventTrigger EventName="Unchecked">
+                                                                                            <h:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:ProcessView},Path=DataContext.TextChangedCommand}" CommandParameter="{Binding .}"/>
+                                                                                        </h:EventTrigger>
+                                                                                    </h:Interaction.Triggers>
+                                                                                </CheckBox>
+                                                                                <TextBlock Text="{Binding Model.ShowName}"/>
+                                                                                <TextBlock Text="{Binding ShowName}"/>
+                                                                        <TextBlock Text="{Binding DLLName}"/>
+                                                                        <TextBlock Text="{Binding ClassName}"/>
+                                                                        <TextBlock Text="{Binding Name}"/>
+                                                                            </DockPanel>
+                                                                        </DataTemplate>
+                                                                    </ListBox.ItemTemplate>
+                                                                </ListBox>
+                                                            </Expander>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </DataTemplate>
+                                        </ContentControl.ContentTemplate>
+                                    </ContentControl>
+
+                                </GroupBox>
+                            </DockPanel>
+                        </Border>
+
+                        <DockPanel Grid.Column="1">
+                            -->
+            <!--工程-->
+            <!--
+                            <Border Grid.Column="0" Margin="5" BorderThickness="1">
+                                <GroupBox Header="测试序列" Padding="0,6">
+                                    <ContentControl Content="{Binding TestConfig}">
+                                        <ContentControl.ContentTemplate>
+                                            <DataTemplate>
+                                                <ScrollViewer>
+                                                    <ListBox ItemsSource="{Binding TestCategories}">
+                                                        <ListBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Expander Header="{Binding Model.Name}" IsExpanded="True" HorizontalAlignment="Stretch">
+                                                                    <ListBox ItemsSource="{Binding Items}">
+                                                                        <ListBox.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <GroupBox Header="{Binding Model.ShowName}" Width="300" Visibility="{Binding Selected,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                                                    <Grid>
+                                                                                        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,5,0"  Height="315">
+                                                                                            <DockPanel>
+                                                                                                <GroupBox Header="参数" Margin="15,0" Padding="10,0" BorderBrush="{DynamicResource ButtonBorder}" DockPanel.Dock="Top">
+                                                                                                    <ItemsControl ItemsSource="{Binding Parameters}">
+                                                                                                        <ItemsControl.ItemTemplate>
+                                                                                                            <DataTemplate>
+                                                                                                                <Grid HorizontalAlignment="Stretch">
+                                                                                                                    <Grid Margin="3,3" x:Name="grid_1" HorizontalAlignment="Stretch">
+                                                                                                                        <Grid.ColumnDefinitions>
+                                                                                                                            <ColumnDefinition Width="*"/>
+                                                                                                                            <ColumnDefinition Width="*"/>
+                                                                                                                            <ColumnDefinition Width="Auto"/>
+                                                                                                                        </Grid.ColumnDefinitions>
+
+                                                                                                                        <TextBlock  Name="paraName" TextTrimming="CharacterEllipsis"  Text="{Binding Model.ShowName}" Margin="5,5,5,5" TextAlignment="Left" HorizontalAlignment="Stretch"/>
+
+                                                                                                                        <Grid Grid.Column="1">
+                                                                                                                            <TextBox Name="paraValue" Text="{Binding Model.DefaultValue,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1">
+                                                                                                                                <h:Interaction.Triggers>
+                                                                                                                                    <i:EventTrigger EventName="LostFocus">
+                                                                                                                            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=DataContext.InputLostFocusCommand}" CommandParameter="{Binding .}"/>
+                                                                                                                        </i:EventTrigger>
+
+                                                                                                                                    <h:EventTrigger EventName="TextChanged">
+                                                                                                                                        <h:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:ProcessView},Path=DataContext.TextChangedCommand}"/>
+                                                                                                                                    </h:EventTrigger>
+                                                                                                                                </h:Interaction.Triggers>
+                                                                                                                            </TextBox>
+
+                                                                                                                            <TextBlock Text="{Binding Model.Unit}" HorizontalAlignment="Right" IsHitTestVisible="False" Visibility="{Binding IsDisplay,Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="2" Background="Transparent" Margin="5,0" VerticalAlignment="Center"  TextAlignment="Left"/>
+
+                                                                                                                        </Grid>
+                                                                                                                    </Grid>
+                                                                                                                </Grid>
+
+                                                                                                            </DataTemplate>
+                                                                                                        </ItemsControl.ItemTemplate>
+                                                                                                    </ItemsControl>
+
+                                                                                                </GroupBox>
+
+                                                                                                <GroupBox Header="指标" Margin="15,5"  BorderBrush="{DynamicResource ButtonBorderHover}" Padding="10,0">
+                                                                                                    <ItemsControl ItemsSource="{Binding Limits}">
+                                                                                                        <ItemsControl.ItemTemplate>
+                                                                                                            <DataTemplate>
+                                                                                                                <ItemsControl ItemsSource="{Binding CompareConditions}">
+                                                                                                                    <ItemsControl.ItemTemplate>
+                                                                                                                        <DataTemplate>
+                                                                                                                            <StackPanel>
+                                                                                                                                <Grid Margin="3,3" Visibility="{Binding Model.UpVisible,Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                                                                                                    <Grid.ColumnDefinitions>
+                                                                                                                                        <ColumnDefinition Width="*"/>
+                                                                                                                                        <ColumnDefinition Width="*"/>
+                                                                                                                                        <ColumnDefinition Width="Auto"  MinWidth="0"/>
+                                                                                                                                    </Grid.ColumnDefinitions>
+                                                                                                                                    <TextBlock Background="Transparent" Margin="5" TextAlignment="Left" HorizontalAlignment="Stretch">
+                                                                                                                                     <Run Text="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},Path=DataContext.Model.ShowName}"/>
+                                                                                                                                     <Run Text="{Binding Model.Compare}" FontSize="12"/>
+                                                                                                                                    </TextBlock>
+
+                                                                                                                                    <Grid Grid.Column="1">
+                                                                                                                                        <TextBox Text="{Binding Model.Value,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1"  Grid.ColumnSpan="2" >
+                                                                                                                                            <h:Interaction.Triggers>
+                                                                                                                                                <i:EventTrigger EventName="LostFocus">
+                                                                                                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=ListBox},Path=DataContext.InputLostFocusCommand}" CommandParameter="{Binding .}"/>
+                                                                                                </i:EventTrigger>
+                                                                                                                                                <h:EventTrigger EventName="TextChanged">
+                                                                                                                                                    <h:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=local:ProcessView},Path=DataContext.TextChangedCommand}"/>
+                                                                                                                                                </h:EventTrigger>
+                                                                                                                                            </h:Interaction.Triggers>
+                                                                                                                                        </TextBox>
+
+                                                                                                                                        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl},Path=DataContext.Model.Unit}" Visibility="{Binding Model.IsDisplay,Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="2" Background="Transparent" Margin="5,0" VerticalAlignment="Center"  TextAlignment="Left" HorizontalAlignment="Right"/>
+
+                                                                                                                                    </Grid>
+                                                                                                                                </Grid>
+                                                                                                                            </StackPanel>
+                                                                                                                        </DataTemplate>
+                                                                                                                    </ItemsControl.ItemTemplate>
+                                                                                                                </ItemsControl>
+                                                                                                            </DataTemplate>
+                                                                                                        </ItemsControl.ItemTemplate>
+                                                                                                    </ItemsControl>
+                                                                                                    <GroupBox.Style>
+                                                                                                        <Style TargetType="GroupBox" BasedOn="{StaticResource {x:Type GroupBox}}">
+                                                                                                            <Style.Triggers>
+                                                                                                                <DataTrigger Binding="{Binding TargetValidations.Count}" Value="0">
+                                                                                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                                                                                </DataTrigger>
+                                                                                                            </Style.Triggers>
+                                                                                                        </Style>
+                                                                                                    </GroupBox.Style>
+                                                                                                </GroupBox>
+                                                                                            </DockPanel>
+                                                                                        </ScrollViewer>
+
+                                                                                        <StackPanel VerticalAlignment="Bottom">
+                                                                                            <Button Content="运行" Margin="10,0" Command="{Binding RelativeSource={RelativeSource AncestorType=local:ProcessView},Path=DataContext.RunItemCommand}"
+                                                                                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}},Path=DataContext}"/>
+                                                                                        </StackPanel>
+
+                                                                                        <h:Chart Visibility="{Binding ElementName=cb_chart,Path=IsChecked,Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource S.Chart.Coord}" yAxisAuto="True" xAxisAuto="True"  Background="#252525" xDatas="{Binding xDatas}" yDatas="{Binding yDatas}" Padding="50,10,10,30">
+                                                                                            <h:Series DisplayName="{Binding Model.ShowName}" Foreground="#FFFFFB8B" >
+                                                                                                <h:Line/>
+                                                                                                <h:MarkPosition MarkValueType="Max" Foreground="Green"/>
+                                                                                                <h:MarkPosition MarkValueType="Min" Foreground="Red"/>
+                                                                                                <h:MarkPosition MarkValueType="Last" Foreground="Orange"/>
+                                                                                            </h:Series>
+
+                                                                                            <h:Chart.LegendStyle>
+                                                                                                <Style TargetType="h:Legend">
+                                                                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                                                                </Style>
+                                                                                            </h:Chart.LegendStyle>
+                                                                                        </h:Chart>
+
+
+
+                                                                                        <CheckBox x:Name="cb_chart" Grid.ColumnSpan="2" IsChecked="{Binding IsShowChart,Mode=TwoWay}" Margin="-10" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                                                                                    </Grid>
+                                                                                </GroupBox>
+                                                                            </DataTemplate>
+                                                                        </ListBox.ItemTemplate>
+
+                                                                        <ListBox.ItemContainerStyle>
+                                                                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                                                                <Setter Property="Visibility" Value="{Binding Selected,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                                                <Setter Property="Template">
+                                                                                    <Setter.Value>
+                                                                                        <ControlTemplate TargetType="ListBoxItem" >
+                                                                                            <ContentPresenter/>
+                                                                                        </ControlTemplate>
+                                                                                    </Setter.Value>
+                                                                                </Setter>
+                                                                            </Style>
+                                                                        </ListBox.ItemContainerStyle>
+
+                                                                        <ListBox.ItemsPanel>
+                                                                            <ItemsPanelTemplate>
+                                                                                <UniformGrid Columns="5"/>
+                                                                            </ItemsPanelTemplate>
+                                                                        </ListBox.ItemsPanel>
+                                                                    </ListBox>
+                                                                </Expander>
+                                                            </DataTemplate>
+                                                        </ListBox.ItemTemplate>
+
+                                                        <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <UniformGrid/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <WrapPanel/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+
+                                                        <ListBox.ItemContainerStyle>
+                                                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                                                <Setter Property="Template">
+                                                                    <Setter.Value>
+                                                                        <ControlTemplate TargetType="ListBoxItem" >
+                                                                            <ContentPresenter/>
+                                                                        </ControlTemplate>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </ListBox.ItemContainerStyle>
+                                                    </ListBox>
+                                                </ScrollViewer>
+                                            </DataTemplate>
+                                        </ContentControl.ContentTemplate>
+                                    </ContentControl>
+                                </GroupBox>
+                            </Border>
+
+                        </DockPanel>
+                    </Grid>
+                </DockPanel>-->
+        </Grid>
+    </Grid>
+
+    <h:Interaction.Triggers>
+        <h:EventTrigger EventName="Loaded">
+            <h:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </h:EventTrigger>
+    </h:Interaction.Triggers>
+</UserControl>

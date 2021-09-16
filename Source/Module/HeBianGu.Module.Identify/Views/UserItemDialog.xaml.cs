@@ -1,4 +1,5 @@
-﻿using HeBianGu.General.DataBase.Identify;
+﻿using HeBianGu.Base.WpfBase;
+using HeBianGu.General.DataBase.Identify;
 using HeBianGu.General.WpfControlLib;
 using System;
 using System.Collections.Generic;
@@ -35,5 +36,5 @@ namespace HeBianGu.Module.Identify.Views
             Sumit?.Invoke(); 
       
         }
-    }
+    } 
 }
