@@ -17,6 +17,8 @@
 
                 <ResourceDictionary Source="/HeBianGu.Control.PropertyGrid;component/PropertyGrid.xaml"/>
 
+                <ResourceDictionary Source="/HeBianGu.Control.PagedDataGrid;component/Themes/Default.xaml"/>
+
                 <!--<ResourceDictionary Source="/HeBianGu.Control.Chart2D;component/Theme/Default.xaml"/>-->
 
                 <!--<ResourceDictionary Source="/HeBianGu.Control.Drawer;component/Drawer.xaml"/>-->

@@ -64,6 +64,9 @@
     <Reference Include="HeBianGu.General.DataBase.Logger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Solution\packages\HeBianGu.General.DataBase.Logger.1.0.0\lib\net45\HeBianGu.General.DataBase.Logger.dll</HintPath>
     </Reference>
+    <Reference Include="HeBianGu.General.LicService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Solution\packages\HeBianGu.General.LicService.1.0.0\lib\net45\HeBianGu.General.LicService.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\..\..\Solution\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -228,14 +231,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\DotNet-License\Source\Control\HeBianGu.Control.Lic\HeBianGu.Control.Lic.csproj">
-      <Project>{84E2A34F-E6A3-4452-994E-F2C3112CE001}</Project>
-      <Name>HeBianGu.Control.Lic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\DotNet-License\Source\General\HeBianGu.General.LicService\HeBianGu.General.LicService.csproj">
-      <Project>{D63BE7AB-25FE-417A-9234-733906ED34E7}</Project>
-      <Name>HeBianGu.General.LicService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\WPF-ControlBase\Source\Base\HeBianGu.Base.WpfBase\HeBianGu.Base.WpfBase.csproj">
       <Project>{a74196bf-acd5-419f-b690-c88bda11bd8b}</Project>
       <Name>HeBianGu.Base.WpfBase</Name>

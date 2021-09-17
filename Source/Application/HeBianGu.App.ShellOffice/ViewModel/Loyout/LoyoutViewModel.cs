@@ -21,7 +21,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Unity;
 using HeBianGu.General.LicService;
-using HeBianGu.Control.Lic;
+//using HeBianGu.Control.Lic;
 using System.Windows.Data;
 
 namespace HeBianGu.App.ShellOffice
@@ -101,24 +101,24 @@ namespace HeBianGu.App.ShellOffice
 
                     license.ModuleName = item.Name;
 
-                    var option = service.IsVail(item.Name, out string err);
+                    //var option = service.IsVail(item.Name, out string err);
 
-                    if (option == null)
-                    {
-                        license.State = "未激活";
+                    //if (option == null)
+                    //{
+                    //    license.State = "未激活";
 
-                        license.Date = string.Empty;
+                    //    license.Date = string.Empty;
 
-                        Licenses.Add(license);
-                    }
-                    else
-                    {
-                        license.State = "已激活";
+                    //    Licenses.Add(license);
+                    //}
+                    //else
+                    //{
+                    //    license.State = "已激活";
 
-                        license.Date = option.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
+                    //    license.Date = option.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
 
-                        Licenses.Add(license);
-                    }
+                    //    Licenses.Add(license);
+                    //}
                 }
 
             }
@@ -181,28 +181,28 @@ namespace HeBianGu.App.ShellOffice
             //  Do：等待消息
             else if (command == "Button.Click.EditLic")
             {
-                if (this.SelectedLicense == null) return;
+                //if (this.SelectedLicense == null) return;
 
-                var r = LicWindow.ShowLic(this.SelectedLicense.ModuleName, out string error);
+                //var r = LicWindow.ShowLic(this.SelectedLicense.ModuleName, out string error);
 
-                if (!r) return;
+                //if (!r) return;
 
-                LicenseService service = new LicenseService();
+                //LicenseService service = new LicenseService();
 
-                var option = service.IsVail(this.SelectedLicense.ModuleName, out string err);
+                //var option = service.IsVail(this.SelectedLicense.ModuleName, out string err);
 
-                if (option == null)
-                {
-                    this.SelectedLicense.State = "未激活";
+                //if (option == null)
+                //{
+                //    this.SelectedLicense.State = "未激活";
 
-                    this.SelectedLicense.Date = string.Empty;
-                }
-                else
-                {
-                    this.SelectedLicense.State = "已激活";
+                //    this.SelectedLicense.Date = string.Empty;
+                //}
+                //else
+                //{
+                //    this.SelectedLicense.State = "已激活";
 
-                    this.SelectedLicense.Date = option.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
-                }
+                //    this.SelectedLicense.Date = option.EndTime.ToString("yyyy-MM-dd HH:mm:ss");
+                //}
             }
         }
 

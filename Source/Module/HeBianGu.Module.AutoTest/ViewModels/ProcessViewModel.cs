@@ -1,9 +1,7 @@
 ﻿using HeBianGu.Base.WpfBase;
 using HeBianGu.General.DataBase.Logger;
 using HeBianGu.General.ModuleService;
-using HeBianGu.General.WcfService;
 using HeBianGu.General.WpfControlLib;
-using JiuJinTech.ATS.Interface;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -53,7 +51,7 @@ namespace HeBianGu.Module.AutoTest
 
         #region - 方法 -
 
-        IClientService service;
+        //IClientService service;
         protected override async void Loaded(object obj)
         {
             this.InfoWithTime("正在尝试连接WCF服务");
@@ -62,33 +60,33 @@ namespace HeBianGu.Module.AutoTest
 
             try
             {
-                service = new TcpService("127.0.0.1", "7777");
+                //service = new TcpService("127.0.0.1", "7777");
 
-                var ip = Dns.GetHostAddresses(Dns.GetHostName())?.FirstOrDefault(l => l.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+                //var ip = Dns.GetHostAddresses(Dns.GetHostName())?.FirstOrDefault(l => l.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
 
-                //  Do ：尝试连接服务器
-                //var result = service.Call<ITest, CallResult>(l => l.Ping(ip.ToString()));
-                ITestCallBack callBack = new TestCallBack();
+                ////  Do ：尝试连接服务器
+                ////var result = service.Call<ITest, CallResult>(l => l.Ping(ip.ToString()));
+                //ITestCallBack callBack = new TestCallBack();
 
-                callBack.CallBack += l => this.InfoWithTime(l);
+                //callBack.CallBack += l => this.InfoWithTime(l);
 
-                var result = service.DuplexCall<ITest, CallResult, ITestCallBack>(l => l.Ping(ip.ToString()), callBack);
-
-
-                if (result != null && result.Code)
-                {
-                    this.InfoWithTime("连接成功");
-                }
-                else
-                {
-                    this.InfoWithTime("连接成功,调用接口失败");
-                    this.InfoWithTime(result.Message);
-                }
+                //var result = service.DuplexCall<ITest, CallResult, ITestCallBack>(l => l.Ping(ip.ToString()), callBack);
 
 
-                //CallResult result= service.Call<ITest, CallResult>(l => l.Ping(ip.ToString()));
+                //if (result != null && result.Code)
+                //{
+                //    this.InfoWithTime("连接成功");
+                //}
+                //else
+                //{
+                //    this.InfoWithTime("连接成功,调用接口失败");
+                //    this.InfoWithTime(result.Message);
+                //}
 
-                this.RefreshTestConfig();
+
+                ////CallResult result= service.Call<ITest, CallResult>(l => l.Ping(ip.ToString()));
+
+                //this.RefreshTestConfig();
             }
             catch (Exception ex)
             {
@@ -115,33 +113,33 @@ namespace HeBianGu.Module.AutoTest
 
                 try
                 {
-                    service = new TcpService("127.0.0.1", "7777");
+                    //service = new TcpService("127.0.0.1", "7777");
 
-                    var ip = Dns.GetHostAddresses(Dns.GetHostName())?.FirstOrDefault(l => l.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
+                    //var ip = Dns.GetHostAddresses(Dns.GetHostName())?.FirstOrDefault(l => l.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork);
 
-                    //  Do ：尝试连接服务器
-                    //var result = service.Call<ITest, CallResult>(l => l.Ping(ip.ToString()));
-                    ITestCallBack callBack = new TestCallBack();
+                    ////  Do ：尝试连接服务器
+                    ////var result = service.Call<ITest, CallResult>(l => l.Ping(ip.ToString()));
+                    //ITestCallBack callBack = new TestCallBack();
 
-                    callBack.CallBack += l => this.InfoWithTime(l);
+                    //callBack.CallBack += l => this.InfoWithTime(l);
 
-                    var result = service.DuplexCall<ITest, CallResult, ITestCallBack>(l => l.Ping(ip.ToString()), callBack);
-
-
-                    if (result != null && result.Code)
-                    {
-                        this.InfoWithTime("连接成功");
-                    }
-                    else
-                    {
-                        this.InfoWithTime("连接成功,调用接口失败");
-                        this.InfoWithTime(result.Message);
-                    }
+                    //var result = service.DuplexCall<ITest, CallResult, ITestCallBack>(l => l.Ping(ip.ToString()), callBack);
 
 
-                    //CallResult result= service.Call<ITest, CallResult>(l => l.Ping(ip.ToString()));
+                    //if (result != null && result.Code)
+                    //{
+                    //    this.InfoWithTime("连接成功");
+                    //}
+                    //else
+                    //{
+                    //    this.InfoWithTime("连接成功,调用接口失败");
+                    //    this.InfoWithTime(result.Message);
+                    //}
 
-                    this.RefreshTestConfig();
+
+                    ////CallResult result= service.Call<ITest, CallResult>(l => l.Ping(ip.ToString()));
+
+                    //this.RefreshTestConfig();
                 }
                 catch (Exception ex)
                 {
@@ -156,25 +154,25 @@ namespace HeBianGu.Module.AutoTest
                 {
                     foreach (var item in cate.Items)
                     {
-                        if (!item.Selected) continue;
+                        //if (!item.Selected) continue;
 
-                        var result = await this.RunItem(item);
+                        //var result = await this.RunItem(item);
 
-                        //service.Do<ITest>(l => l.Run(json));
+                        ////service.Do<ITest>(l => l.Run(json));
 
-                        item.IsBuzy = false;
+                        //item.IsBuzy = false;
 
-                        if (result == null)
-                        {
-                            this.InfoWithTime("调用服务失败"); continue;
-                        }
+                        //if (result == null)
+                        //{
+                        //    this.InfoWithTime("调用服务失败"); continue;
+                        //}
 
-                        if (!result.Code)
-                        {
-                            this.InfoWithTime(result.Message); continue;
-                        }
+                        //if (!result.Code)
+                        //{
+                        //    this.InfoWithTime(result.Message); continue;
+                        //}
 
-                        this.InfoWithTime($"发送成功:" + item.Model.Name);
+                        //this.InfoWithTime($"发送成功:" + item.Model.Name);
 
 
                     }
@@ -241,66 +239,66 @@ namespace HeBianGu.Module.AutoTest
             {
                 if (null == _runItemCommand)
                 {
-                    _runItemCommand = new RelayCommand(new Action<object>(RunItem));
+                    //_runItemCommand = new RelayCommand(new Action<object>(RunItem));
                 }
                 return _runItemCommand;
             }
         }
 
 
-        async Task<CallResult> RunItem(ItemViewModel item)
-        {
-            string json = JsonConvert.SerializeObject(item.Model);
+        //async Task<CallResult> RunItem(ItemViewModel item)
+        //{
+        //    string json = JsonConvert.SerializeObject(item.Model);
 
-            ITestCallBack callBack = new TestCallBack();
+        //    ITestCallBack callBack = new TestCallBack();
 
-            callBack.CallBack += l => this.InfoWithTime(l);
+        //    callBack.CallBack += l => this.InfoWithTime(l);
 
-            item.xDatas.Clear();
-            item.yDatas.Clear();
-            item.DrawOnce = true;
+        //    item.xDatas.Clear();
+        //    item.yDatas.Clear();
+        //    item.DrawOnce = true;
 
-            callBack.CallBackData += (l, k) =>
-            {
-                item.xDatas.Add(l);
-                item.yDatas.Add(k);
+        //    callBack.CallBackData += (l, k) =>
+        //    {
+        //        item.xDatas.Add(l);
+        //        item.yDatas.Add(k);
 
-                item.DrawOnce = true;
-            };
+        //        item.DrawOnce = true;
+        //    };
 
-            item.IsBuzy = true;
+        //    item.IsBuzy = true;
 
-            item.IsShowChart = true;
+        //    item.IsShowChart = true;
 
-            return await Task.Run(() =>
-            {
-                return service.DuplexCall<ITest, CallResult, ITestCallBack>(l => l.Run(json), callBack);
-            });
+        //    return await Task.Run(() =>
+        //    {
+        //        return service.DuplexCall<ITest, CallResult, ITestCallBack>(l => l.Run(json), callBack);
+        //    });
 
-        }
+        //}
 
-        async void RunItem(object obj)
-        {
-            if (obj is ItemViewModel item)
-            {
+        //async void RunItem(object obj)
+        //{
+        //    if (obj is ItemViewModel item)
+        //    {
 
-                var result = await this.RunItem(item);
+        //        var result = await this.RunItem(item);
 
-                item.IsBuzy = false;
+        //        item.IsBuzy = false;
 
-                if (result == null)
-                {
-                    this.InfoWithTime("调用服务失败"); return;
-                }
+        //        if (result == null)
+        //        {
+        //            this.InfoWithTime("调用服务失败"); return;
+        //        }
 
-                if (!result.Code)
-                {
-                    this.InfoWithTime(result.Message); return;
-                }
+        //        if (!result.Code)
+        //        {
+        //            this.InfoWithTime(result.Message); return;
+        //        }
 
-                this.InfoWithTime($"发送成功:" + item.Model.Name);
-            }
-        }
+        //        this.InfoWithTime($"发送成功:" + item.Model.Name);
+        //    }
+        //}
     }
 
     partial class ProcessViewModel

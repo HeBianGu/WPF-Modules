@@ -160,10 +160,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\WCF-Service\Source\General\HeBianGu.General.WcfService\HeBianGu.General.WcfService.csproj">
-      <Project>{53521187-e520-4c60-bd1b-c6a6c4200fa4}</Project>
-      <Name>HeBianGu.General.WcfService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\WPF-ControlBase\Source\Base\HeBianGu.Base.WpfBase\HeBianGu.Base.WpfBase.csproj">
       <Project>{a74196bf-acd5-419f-b690-c88bda11bd8b}</Project>
       <Name>HeBianGu.Base.WpfBase</Name>
@@ -183,10 +179,6 @@
     <ProjectReference Include="..\..\..\..\WPF-Controls\Source\Control\HeBianGu.Control.PagedDataGrid\HeBianGu.Control.PagedDataGrid.csproj">
       <Project>{42842c36-e62c-474a-b058-8f38fa78c919}</Project>
       <Name>HeBianGu.Control.PagedDataGrid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Base\JiuJinTech.ATS.Interface\JiuJinTech.ATS.Interface.csproj">
-      <Project>{016d253d-e68b-4d5a-955f-3572484cc48a}</Project>
-      <Name>JiuJinTech.ATS.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\General\HeBianGu.General.ModuleService\HeBianGu.General.ModuleService.csproj">
       <Project>{A62B82DF-D446-479E-9815-C8BC40EFD077}</Project>
